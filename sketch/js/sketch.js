@@ -5,32 +5,38 @@
 
 // Import modules
 import p5 from 'p5';
-import Example from './example';
+import Sculpture from './sculpture';
 
 export default new p5((sketch) => {
-  let example;
+  let sculpture;
 
   sketch.setup = () => {
-    sketch.createCanvas(window.innerWidth, window.innerHeight);
-
-    // Add your code here
-    example = new Example();
+    sketch.createCanvas(window.innerWidth, window.innerHeight, sketch.WEBGL);
+    sketch.frameRate(10);
+    sculpture = new Sculpture();
   };
 
   sketch.draw = () => {
-    // Add your code here
+    sculpture.addLayer();
 
-    example.update();
-    example.draw();
+    sketch.push();
+    sketch.translate(0, sketch.height / 2, -1000);
+    sketch.rotateY(0.01 * sketch.frameCount);
+
+    sketch.push();
+    sketch.fill(128, 0, 0, 255);
+    sketch.translate(0, 1, 0);
+    sketch.rotateX(Math.PI / 2);
+    sketch.box(1500, 1500, 1);
+    sketch.pop();
+
+    sketch.fill(0, 0, 0, 32);
+    //    sketch.translate(-500, 0, -1000);
+    sculpture.draw();
+    sketch.pop();
   };
 
-  sketch.mouseDragged = () => {
-    // Add your code here
-  };
+  sketch.mouseDragged = () => {};
 
-  sketch.keyPressed = (key) => {
-    if (key === '') {
-      // Add your code here
-    }
-  };
+  sketch.keyPressed = () => {};
 });
