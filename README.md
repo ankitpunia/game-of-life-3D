@@ -1,1 +1,1 @@
-A basic boilerplate for developing p5.js sketches in ES6 style with babel and webpack.
+The program renders 3D sculptures of the generations that are created by Conrad's Game Of Life.
